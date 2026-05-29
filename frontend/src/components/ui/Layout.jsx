@@ -19,7 +19,7 @@ export default function Layout({ children, activeTab, setActiveTab }) {
   const socket = useSocket();
 
   const fetchBalance = () => {
-   fetch(`${API_URL}/wallet?t=${Date.now()}`)
+   fetch(`${API_URL}/api/wallet?t=${Date.now()}`)
       .then(res => res.json())
       .then(data => {
         if (data.success && data.wallet) {

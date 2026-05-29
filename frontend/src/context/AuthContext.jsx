@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${API_URL}/auth/me`)
+    fetch(`${API_URL}/api/auth/me`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {

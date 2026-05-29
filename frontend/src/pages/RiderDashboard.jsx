@@ -165,7 +165,7 @@ export default function RiderDashboard() {
     if (!activeTask) return;
     setAccepting(true);
     try {
-      const res = await fetch(`${API_URL}/orders/${activeTask._id}/accept`, {
+      const res = await fetch(`${API_URL}/api/orders/${activeTask._id}/accept`, {
         method: 'PUT'
       });
       const data = await res.json();
@@ -189,7 +189,7 @@ export default function RiderDashboard() {
     if (!activeTask) return;
     setAccepting(true);
     try {
-      const res = await fetch(`${API_URL}/orders/${activeTask._id}/reject`, {
+      const res = await fetch(`${API_URL}/api/orders/${activeTask._id}/reject`, {
         method: 'PUT'
       });
       const data = await res.json();

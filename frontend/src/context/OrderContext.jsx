@@ -67,7 +67,7 @@ export const OrderProvider = ({ children }) => {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const res = await fetch('${API_URL}/orders');
+      const res = await fetch('${API_URL}/api/orders');
       const data = await res.json();
       if (data.success) {
         setOrders(data.orders);
@@ -89,7 +89,7 @@ export const OrderProvider = ({ children }) => {
 
   const getEstimation = async (pickup, stops, weather = 'clear') => {
     try {
-      const res = await fetch(`${API_URL}/orders/estimate`, {
+      const res = await fetch(`${API_URL}/api/orders/estimate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ pickup, stops, weather })
@@ -103,7 +103,7 @@ export const OrderProvider = ({ children }) => {
 
   const placeOrder = async (orderData) => {
     try {
-      const res = await fetch(`${API_URL}/orders`, {
+      const res = await fetch(`${API_URL}/api/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData)
@@ -123,7 +123,7 @@ export const OrderProvider = ({ children }) => {
 
   const cancelActiveOrder = async (orderId) => {
     try {
-      const res = await fetch(`${API_URL}/orders/${orderId}/cancel`, {
+      const res = await fetch(`${API_URL}/api/orders/${orderId}/cancel`, {
         method: 'PUT'
       });
       const data = await res.json();
