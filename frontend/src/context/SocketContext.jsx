@@ -4,15 +4,16 @@ import { useAuth } from './AuthContext';
 
 const SocketContext = createContext(null);
 
+const SOCKET_URL = 'https://individual-wp27.onrender.com';
+
 export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
   const { user, riderProfile } = useAuth();
 
   useEffect(() => {
-    // Connect to backend server using Vite proxy path to prevent cross-origin websocket issues
-    const socketUrl = window.location.origin;
-    const socketInstance = io(socketUrl, {
-      withCredentials: true
+    const socketInstance = io(SOCKET_URL, {
+      withCredentials: true,
+      transports: ['websocket', 'polling']
     });
 
     setSocket(socketInstance);
@@ -22,12 +23,12 @@ export const SocketProvider = ({ children }) => {
     };
   }, []);
 
-  // Re-register socket whenever socket connects OR user details change
   useEffect(() => {
     if (!socket) return;
 
     const handleConnect = () => {
       console.log('⚡ Connected to Aether Socket Matrix:', socket.id);
+
       if (user) {
         socket.emit('register', {
           userId: user._id,
