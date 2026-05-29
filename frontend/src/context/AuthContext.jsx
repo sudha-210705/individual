@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    const res = await fetch(`${API_URL}/auth/login`, {
+    const res = await fetch(`${API_URL}/api/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
 
       setUser(data.user);
 
-      const meRes = await fetch(`${API_URL}/auth/me`, {
+      const meRes = await fetch(`${API_URL}/api/auth/me`, {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem('token')}`
         }
@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = async (userData) => {
-    const res = await fetch(`${API_URL}/auth/register`, {
+    const res = await fetch(`${API_URL}/api/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(userData)
@@ -81,7 +81,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     sessionStorage.removeItem('token');
 
-    await fetch(`${API_URL}/auth/logout`);
+    await fetch(`${API_URL}/api/auth/logout`);
 
     setUser(null);
     setRiderProfile(null);
