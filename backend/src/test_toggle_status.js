@@ -1,7 +1,7 @@
 const run = async () => {
   try {
     // 1. Login as rider1
-    const loginRes = await fetch('http://localhost:5000/api/auth/login', {
+    const loginRes = await fetch('https://individual-wp27.onrender.com/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: 'rider1@gmail.com', password: 'password' })
@@ -14,7 +14,7 @@ const run = async () => {
       const token = loginData.token;
       
       // 2. Toggle status to online
-      const statusRes = await fetch('http://localhost:5000/api/riders/status', {
+      const statusRes = await fetch('https://individual-wp27.onrender.com/api/riders/status', {
         method: 'PUT',
         headers: { 
           'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ const run = async () => {
       console.log('Online Toggle Response:', statusData);
 
       // 3. Toggle status to offline
-      const statusRes2 = await fetch('http://localhost:5000/api/riders/status', {
+      const statusRes2 = await fetch('https://individual-wp27.onrender.com/api/riders/status', {
         method: 'PUT',
         headers: { 
           'Content-Type': 'application/json',
