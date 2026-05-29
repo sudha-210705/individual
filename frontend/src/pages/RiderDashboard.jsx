@@ -98,7 +98,7 @@ export default function RiderDashboard() {
 
   const fetchRiderHUD = () => {
     // Fetch profile metrics
-   fetch(`${API_URL}/riders/profile?t=${Date.now()}`)
+   fetch(`${API_URL}/api/riders/profile?t=${Date.now()}`)
       .then(res => res.json())
       .then(data => {
         if (data.success && data.rider) {
@@ -108,7 +108,7 @@ export default function RiderDashboard() {
       });
 
     // Fetch queue dispatches
-    fetch(`${API_URL}/riders/orders?t=${Date.now()}`)
+    fetch(`${API_URL}/api/riders/orders?t=${Date.now()}`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {
@@ -143,7 +143,7 @@ export default function RiderDashboard() {
     const nextStatus = rider.status === 'offline' ? 'online' : 'offline';
     
     try {
-      const res = await fetch('${API_URL}/riders/status', {
+      const res = await fetch('${API_URL}/api/riders/status', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: nextStatus })
@@ -236,7 +236,7 @@ export default function RiderDashboard() {
   const handleMapClick = async (coords) => {
     setCoordinates(coords);
     try {
-      const res = await fetch('${API_URL}/riders/location', {
+      const res = await fetch(`${API_URL}/api/riders/location`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ coordinates: coords })

@@ -39,7 +39,7 @@ export default function AdminDashboard() {
 
   const fetchStats = async () => {
     try {
-      const res = await fetch(`${API_URL}/admin/stats?t=${Date.now()}`);
+      const res = await fetch(`${API_URL}/api/admin/stats?t=${Date.now()}`);
       const data = await res.json();
       if (data.success) {
         setStats(data.stats);
@@ -104,7 +104,7 @@ export default function AdminDashboard() {
   const handleUpdateSurge = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('/admin/surge', {
+      const res = await fetch(`${API_URL}/api/admin/surge`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
