@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSocket } from '../context/SocketContext';
 import CyberpunkMap from '../components/maps/CyberpunkMap';
+const API_URL = 'https://individual-wp27.onrender.com';
+
 import { 
   TrendingUp, 
   Users, 
@@ -37,7 +39,7 @@ export default function AdminDashboard() {
 
   const fetchStats = async () => {
     try {
-      const res = await fetch(`/api/admin/stats?t=${Date.now()}`);
+      const res = await fetch(`${API_URL}/admin/stats?t=${Date.now()}`);
       const data = await res.json();
       if (data.success) {
         setStats(data.stats);
@@ -102,7 +104,7 @@ export default function AdminDashboard() {
   const handleUpdateSurge = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/admin/surge', {
+      const res = await fetch('/admin/surge', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

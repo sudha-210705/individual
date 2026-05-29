@@ -20,7 +20,7 @@ export default function SupportCenter() {
   ];
 
   const fetchTicketsList = () => {
-    fetch('/api/tickets')
+    fetch('${API/_URL}tickets')
       .then(res => res.json())
       .then(data => {
         if (data.success) {
@@ -45,7 +45,7 @@ export default function SupportCenter() {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/tickets', {
+      const res = await fetch('${API_URL}/tickets', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ subject, messageText: message })
@@ -71,7 +71,7 @@ export default function SupportCenter() {
     setChatInput('');
 
     try {
-      const res = await fetch(`/api/tickets/${activeTicket._id}/messages`, {
+      const res = await fetch(`${API_URL}/tickets/${activeTicket._id}/messages`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: txt })

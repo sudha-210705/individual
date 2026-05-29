@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useSocket } from '../../context/SocketContext';
+const API_URL = 'https://individual-wp27.onrender.com';
+
 import { 
   Map, 
   Wallet, 
@@ -17,7 +19,7 @@ export default function Layout({ children, activeTab, setActiveTab }) {
   const socket = useSocket();
 
   const fetchBalance = () => {
-    fetch(`/api/wallet?t=${Date.now()}`)
+   fetch(`${API_URL}/wallet?t=${Date.now()}`)
       .then(res => res.json())
       .then(data => {
         if (data.success && data.wallet) {

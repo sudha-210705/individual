@@ -9,7 +9,7 @@ export default function WalletPage() {
   const [transactions, setTransactions] = useState([]);
 
   const fetchWalletDetails = () => {
-    fetch(`/api/wallet?t=${Date.now()}`)
+    fetch(`${API_URL}/wallet?t=${Date.now()}`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {

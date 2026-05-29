@@ -72,7 +72,7 @@ export default function CustomerDashboard() {
   const [booking, setBooking] = useState(false);
 
   const fetchOrders = () => {
-    fetch(`${API_URL}/api/orders?t=${Date.now()}`)
+    fetch(`${API_URL}/orders?t=${Date.now()}`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {
@@ -237,7 +237,7 @@ export default function CustomerDashboard() {
     });
 
     try {
-      const res = await fetch(`${API_URL}/api/orders/estimate`, {
+      const res = await fetch(`${API_URL}/orders/estimate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -280,7 +280,7 @@ export default function CustomerDashboard() {
     });
 
     try {
-      const res = await fetch(`${API_URL}/api/orders`, {
+      const res = await fetch(`${API_URL}/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -308,7 +308,7 @@ export default function CustomerDashboard() {
   };
 
   const handleCancelOrder = async (orderId) => {
-    await fetch(`${API_URL}/api/orders/${orderId}/cancel`, { method: 'PUT' });
+    await fetch(`${API_URL}/orders/${orderId}/cancel`, { method: 'PUT' });
     setActiveOrder(null);
     activeOrderIdRef.current = null;
     fetchOrders();

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CyberpunkMap from '../components/maps/CyberpunkMap';
 import { Battery, Wifi, Coins, Award, Navigation } from 'lucide-react';
 import { useSocket } from '../context/SocketContext';
+const API_URL = 'https://individual-wp27.onrender.com';
 
 // Distance calculation helper (GPS coordinate distance in km)
 const calculateDistance = (p1, p2) => {
@@ -97,7 +98,7 @@ export default function RiderDashboard() {
 
   const fetchRiderHUD = () => {
     // Fetch profile metrics
-    fetch(`/api/riders/profile?t=${Date.now()}`)
+   fetch(`${API_URL}/riders/profile?t=${Date.now()}`)
       .then(res => res.json())
       .then(data => {
         if (data.success && data.rider) {
@@ -107,7 +108,7 @@ export default function RiderDashboard() {
       });
 
     // Fetch queue dispatches
-    fetch(`/api/riders/orders?t=${Date.now()}`)
+    fetch(`${API_URL}/riders/orders?t=${Date.now()}`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {
@@ -142,7 +143,7 @@ export default function RiderDashboard() {
     const nextStatus = rider.status === 'offline' ? 'online' : 'offline';
     
     try {
-      const res = await fetch('/api/riders/status', {
+      const res = await fetch('${API_URL}/riders/status', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: nextStatus })
@@ -164,7 +165,7 @@ export default function RiderDashboard() {
     if (!activeTask) return;
     setAccepting(true);
     try {
-      const res = await fetch(`/api/orders/${activeTask._id}/accept`, {
+      const res = await fetch(`${API_URL}/orders/${activeTask._id}/accept`, {
         method: 'PUT'
       });
       const data = await res.json();
@@ -188,7 +189,7 @@ export default function RiderDashboard() {
     if (!activeTask) return;
     setAccepting(true);
     try {
-      const res = await fetch(`/api/orders/${activeTask._id}/reject`, {
+      const res = await fetch(`${API_URL}/orders/${activeTask._id}/reject`, {
         method: 'PUT'
       });
       const data = await res.json();
@@ -235,7 +236,7 @@ export default function RiderDashboard() {
   const handleMapClick = async (coords) => {
     setCoordinates(coords);
     try {
-      const res = await fetch('/api/riders/location', {
+      const res = await fetch('${API_URL}/riders/location', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ coordinates: coords })
