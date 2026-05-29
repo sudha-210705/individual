@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CyberpunkMap from '../components/maps/CyberpunkMap';
 import { MapPin, Plus, Trash, Loader2, CheckCircle2 } from 'lucide-react';
 import { useSocket } from '../context/SocketContext';
+const API_URL = 'https://individual-wp27.onrender.com';
 
 // Simple deterministic geocoding simulation (hashes text to coordinates near center)
 const getCoordsFromAddress = (address, baseLng = 77.5946, baseLat = 12.9716) => {
@@ -71,7 +72,7 @@ export default function CustomerDashboard() {
   const [booking, setBooking] = useState(false);
 
   const fetchOrders = () => {
-    fetch(`/api/orders?t=${Date.now()}`)
+    fetch(`${API_URL}/api/orders?t=${Date.now()}`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {
@@ -236,7 +237,7 @@ export default function CustomerDashboard() {
     });
 
     try {
-      const res = await fetch('/api/orders/estimate', {
+      const res = await fetch(`${API_URL}/api/orders/estimate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -279,7 +280,7 @@ export default function CustomerDashboard() {
     });
 
     try {
-      const res = await fetch('/api/orders', {
+      const res = await fetch(`${API_URL}/api/orders`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -307,7 +308,7 @@ export default function CustomerDashboard() {
   };
 
   const handleCancelOrder = async (orderId) => {
-    await fetch(`/api/orders/${orderId}/cancel`, { method: 'PUT' });
+    await fetch(`${API_URL}/api/orders/${orderId}/cancel`, { method: 'PUT' });
     setActiveOrder(null);
     activeOrderIdRef.current = null;
     fetchOrders();
