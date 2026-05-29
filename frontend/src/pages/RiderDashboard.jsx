@@ -143,7 +143,7 @@ export default function RiderDashboard() {
     const nextStatus = rider.status === 'offline' ? 'online' : 'offline';
     
     try {
-      const res = await fetch('${API_URL}/api/riders/status', {
+      const res = await fetch(`${API_URL}/api/riders/status`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: nextStatus })
