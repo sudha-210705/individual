@@ -20,7 +20,7 @@ export default function SupportCenter() {
   ];
 
   const fetchTicketsList = () => {
-    fetch('${API/_URL}/api/tickets')
+    fetch(`${API/_URL}/api/tickets`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {
@@ -45,7 +45,7 @@ export default function SupportCenter() {
     setLoading(true);
 
     try {
-      const res = await fetch('${API_URL}/api/tickets', {
+      const res = await fetch(`${API_URL}/api/tickets`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ subject, messageText: message })
