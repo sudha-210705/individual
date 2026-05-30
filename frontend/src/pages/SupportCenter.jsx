@@ -20,7 +20,7 @@ export default function SupportCenter() {
   ];
 
   const fetchTicketsList = () => {
-    fetch(`${API/_URL}/api/tickets`)
+    fetch(`${API_URL}/api/tickets`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {
