@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useSocket } from '../context/SocketContext';
 import { ArrowUpRight, ArrowDownLeft } from 'lucide-react';
+const API_URL = 'https://individual-wp27.onrender.com';
 
 export default function WalletPage() {
   const { user } = useAuth();
