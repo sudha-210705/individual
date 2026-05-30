@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Send, Cpu, HelpCircle, Plus } from 'lucide-react';
+const API_URL = 'https://individual-wp27.onrender.com';
 
 export default function SupportCenter() {
   const { user } = useAuth();

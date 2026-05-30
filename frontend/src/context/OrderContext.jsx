@@ -67,7 +67,7 @@ export const OrderProvider = ({ children }) => {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const res = await fetch('${API_URL}/api/orders');
+      const res = await fetch(`${API_URL}/api/orders`);
       const data = await res.json();
       if (data.success) {
         setOrders(data.orders);
